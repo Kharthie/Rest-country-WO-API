@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    
+    var board = document.createElement("div");
+board.style.width = "1030px";
+board.style.display = "flex";
+board.style.flexWrap = "wrap";
+board.style.flexDirection = "row";
+board.style.backgroundColor = "lightblue";
+
+fetch("https://restcountries.com/v3.1/all")
+.then(function(data){
+    return data.json();
+})
+.then(function(dataObj){
+    console.log(dataObj)
+
+
+    dataObj.forEach(function (element) {
+
+    var mydiv = document.createElement("div");
+    mydiv.style.width = "200px";
+    mydiv.style.display = "flex";
+    mydiv.style.flexDirection = "column";
+    mydiv.style.border = "2px solid black";
+    mydiv.style.marginRight = "20px";
+    mydiv.style.MarginLeft = "20px";
+    mydiv.style.marginBottom = "20px"
+
+    board.appendChild(mydiv);
+
+    var box = document.createElement("img");
+    box.style.width = "199px";
+    box.style.height = "100px";
+    box.style.border = "1px solid black"
+    box.setAttribute("src" ,element.flags.png);
+    mydiv.appendChild(box);
+
+    // var button = document.createElement("button");
+    // button.style.width = "100px";
+    // button.style.height = "30%";
+    // button.style.backgroundColor = "white";
+    // button.innerText = "Get Weather";
+    // button.style.textAlign = "center";
+    // mydiv.appendChild(button);
+
+    var v1 = document.createElement("div");
+    v1.style.width = "200px";
+    v1.style.height = "50px";
+    v1.innerText = element.name.common;
+    mydiv.appendChild(v1);
+
+    var v2 = document.createElement("div");
+    v2.style.width = "200px";
+    v2.style.height = "50px";
+    v2.innerText = element.car.signs;
+    mydiv.appendChild(v2);
+
+    // var button = document.createElement("button");
+    // button.style.width = "100px";
+    // button.style.height = "30%";
+    // button.style.backgroundColor = "white";
+    // button.innerText = "Get Weather";
+    // button.style.textAlign = "center";
+    // box.appendChild(button);
+
+
+
+})
+document.body.appendChild(board);
+})
+
+
+    </script>
+    
+</body>
+</html>
